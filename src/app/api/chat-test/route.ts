@@ -32,5 +32,4 @@ export async function GET() {
       error: errorMessage
     }, { status: 500 });
   }
-}</parameter>
-</invoke>
+}
