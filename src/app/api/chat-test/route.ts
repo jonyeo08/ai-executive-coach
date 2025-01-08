@@ -25,11 +25,12 @@ export async function GET() {
       success: true,
       message: completion.choices[0].message.content
     });
-  } catch (error: any) {
-    console.error('OpenAI API Error:', error);
+  } catch (error: unknown) { // Changed from any
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json({
       success: false,
-      error: error.message
+      error: errorMessage
     }, { status: 500 });
   }
-}
+}</parameter>
+</invoke>
