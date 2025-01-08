@@ -25,7 +25,7 @@ export async function GET() {
       success: true,
       message: completion.choices[0].message.content
     });
-  } catch (error: unknown) { // Changed from any
+  } catch (error: unknown) { 
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json({
       success: false,
