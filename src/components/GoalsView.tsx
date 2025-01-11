@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PlusCircle, Edit, Trash, MessageCircle, Check } from 'lucide-react';
 import { GoalStore } from '@/lib/goalStore';
+
+type GoalUpdates = {
+  text?: string;
+  progress?: number;
+  status?: 'active' | 'completed' | 'archived';
+};
 
 export default function GoalsView() {
   const [goalStore] = useState(() => new GoalStore());
@@ -20,7 +26,7 @@ export default function GoalsView() {
     }
   };
 
-  const handleUpdateGoal = (id: string, updates: any) => {
+  const handleUpdateGoal = (id: string, updates: GoalUpdates) => {
     goalStore.updateGoal(id, updates);
     setGoals(goalStore.getGoals());
   };

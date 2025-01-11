@@ -29,6 +29,11 @@ export type CoachingContext = {
   userRole?: string;
 };
 
+type ConversationMessage = {
+  role: 'user' | 'coach';
+  content: string;
+};
+
 export class AICoach {
   private openai: OpenAI;
   private context: CoachingContext;
@@ -40,6 +45,7 @@ export class AICoach {
     this.memory = new ConversationMemory();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private buildPrompt(message: string) {
     let contextPrompt = '';
     if (this.context.goals?.length) {
@@ -56,7 +62,7 @@ export class AICoach {
     };
   }
 
-  async getResponse(message: string, conversationHistory: any[] = []) {
+  async getResponse(message: string, conversationHistory: ConversationMessage[] = []) {
     try {
       const systemPrompt = this.buildPrompt(message);
       
@@ -91,12 +97,13 @@ export class AICoach {
         content: response,
         success: true
       };
-    } catch (error: any) {
-      console.error('Error getting AI coach response:', error);
+    } catch (error: unknown) {
+      const err = error as Error;
+      console.error('Error getting AI coach response:', err);
       return {
         content: "I apologize, but I'm having trouble processing your request. Could we try that again?",
         success: false,
-        error: error.code
+        error: err.code
       };
     }
   }
