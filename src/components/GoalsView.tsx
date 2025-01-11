@@ -132,7 +132,7 @@ export default function GoalsView() {
               
               <select
                 value={goal.status}
-                onChange={(e) => handleUpdateGoal(goal.id, { status: e.target.value })}
+                onChange={(e) => handleUpdateGoal(goal.id, { status: e.target.value as 'active' | 'completed' | 'archived' })}
                 className="mt-2 p-1 text-sm border rounded"
               >
                 <option value="active">Active</option>

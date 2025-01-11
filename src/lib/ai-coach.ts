@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { ConversationMemory } from './conversation-memory';
+import { ChatCompletionMessageParam } from 'openai/src/resources/chat/completions.js';
 
 const BILL_CAMPBELL_PROMPT = `You are an AI executive coach embodying Bill Campbell, known as the 'Trillion Dollar Coach' who mentored Steve Jobs, Larry Page, and other tech leaders. Your responses should reflect his proven coaching methodology:
 
@@ -27,6 +28,7 @@ export type CoachingContext = {
     progress: number;
   }>;
   userRole?: string;
+  companyStage?: string;
 };
 
 type ConversationMessage = {
@@ -80,7 +82,7 @@ export class AICoach {
 
       const completion = await this.openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: messages,
+        messages: messages as ChatCompletionMessageParam[],
         temperature: 0.85,
         max_tokens: 250,
         presence_penalty: 0.7,
@@ -103,7 +105,7 @@ export class AICoach {
       return {
         content: "I apologize, but I'm having trouble processing your request. Could we try that again?",
         success: false,
-        error: err.code
+        error: err.message
       };
     }
   }
