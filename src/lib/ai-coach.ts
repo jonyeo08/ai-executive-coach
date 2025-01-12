@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { ConversationMemory } from './conversation-memory';
+import { ChatCompletionMessageParam } from 'openai/src/resources/chat/completions.js';
 
 const BILL_CAMPBELL_PROMPT = `You are an AI executive coach embodying Bill Campbell, known as the 'Trillion Dollar Coach' who mentored Steve Jobs, Larry Page, and other tech leaders. Your responses should reflect his proven coaching methodology:
 
@@ -27,6 +28,12 @@ export type CoachingContext = {
     progress: number;
   }>;
   userRole?: string;
+  companyStage?: string;
+};
+
+type ConversationMessage = {
+  role: 'user' | 'coach';
+  content: string;
 };
 
 export class AICoach {
@@ -40,6 +47,7 @@ export class AICoach {
     this.memory = new ConversationMemory();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private buildPrompt(message: string) {
     let contextPrompt = '';
     if (this.context.goals?.length) {
@@ -56,7 +64,7 @@ export class AICoach {
     };
   }
 
-  async getResponse(message: string, conversationHistory: any[] = []) {
+  async getResponse(message: string, conversationHistory: ConversationMessage[] = []) {
     try {
       const systemPrompt = this.buildPrompt(message);
       
@@ -74,7 +82,7 @@ export class AICoach {
 
       const completion = await this.openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: messages,
+        messages: messages as ChatCompletionMessageParam[],
         temperature: 0.85,
         max_tokens: 250,
         presence_penalty: 0.7,
@@ -91,12 +99,13 @@ export class AICoach {
         content: response,
         success: true
       };
-    } catch (error: any) {
-      console.error('Error getting AI coach response:', error);
+    } catch (error: unknown) {
+      const err = error as Error;
+      console.error('Error getting AI coach response:', err);
       return {
         content: "I apologize, but I'm having trouble processing your request. Could we try that again?",
         success: false,
-        error: error.code
+        error: err.message
       };
     }
   }
