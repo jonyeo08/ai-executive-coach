@@ -1,6 +1,6 @@
 
-import Navigation from '@/components/Navigation';
-import { Users } from 'lucide-react';
+import Navigation from "@/components/Navigation";
+import Image from "next/image";
 
 export default function MarketplacePage() {
   return (
@@ -34,17 +34,19 @@ export default function MarketplacePage() {
             }
           ].map((coach, index) => (
             <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <img 
+              <Image 
                 src={coach.image} 
                 alt={coach.name} 
+                width={500}
+                height={300}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="font-semibold text-xl text-gray-900">{coach.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-900">{coach.name}</h3>
                 <p className="text-gray-600">{coach.title}</p>
-                <p className="text-sm text-gray-500 mt-2">{coach.specialty}</p>
-                <button className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors">
-                  Schedule Session
+                <p className="mt-2 text-sm text-gray-500">Specialty: {coach.specialty}</p>
+                <button className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+                  Book a Session
                 </button>
               </div>
             </div>
