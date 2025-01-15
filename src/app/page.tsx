@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 
@@ -28,7 +27,7 @@ export default function Home() {
             <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
             <p className="text-gray-600">Get immediate guidance and support whenever you need it through our AI coach.</p>
           </div>
-          
+
           <div className="bg-white p-6 rounded-xl shadow-md">
             <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +37,7 @@ export default function Home() {
             <h3 className="text-xl font-semibold mb-2">Track Progress</h3>
             <p className="text-gray-600">Set goals and monitor your development with our integrated tracking system.</p>
           </div>
-          
+
           <div className="bg-white p-6 rounded-xl shadow-md">
             <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,7 +53,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gray-200 rounded-full mr-4"></div>
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" alt="Sarah Chen" className="w-12 h-12 object-cover rounded-full mr-4" />
               <div>
                 <h4 className="font-semibold">Sarah Chen</h4>
                 <p className="text-gray-600">CEO, TechVision Inc.</p>
@@ -62,10 +61,10 @@ export default function Home() {
             </div>
             <p className="text-gray-700 italic">"The combination of AI coaching and human expertise has been transformative for my leadership journey. I've achieved more in 6 months than I did in years of traditional coaching."</p>
           </div>
-          
+
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gray-200 rounded-full mr-4"></div>
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" alt="Marcus Johnson" className="w-12 h-12 object-cover rounded-full mr-4" />
               <div>
                 <h4 className="font-semibold">Marcus Johnson</h4>
                 <p className="text-gray-600">Founder, InnovateLab</p>
