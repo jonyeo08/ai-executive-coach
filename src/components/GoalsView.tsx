@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { PlusCircle, Edit, Trash, MessageCircle, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { PlusCircle, Edit, Trash, MessageCircle, Check, ChevronDown, ChevronUp, Target } from 'lucide-react';
 import { GoalStore } from '@/lib/goalStore';
 
 type GoalUpdates = {
@@ -48,31 +48,34 @@ export default function GoalsView() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 text-green-800 border-green-200';
       case 'archived':
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 text-gray-800 border-gray-200';
       default:
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-indigo-100 text-indigo-800 border-indigo-200';
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 shadow-lg">
+    <div className="max-w-4xl mx-auto space-y-8">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 shadow-lg transform transition-all hover:scale-[1.01]">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <h2 className="text-3xl font-bold text-white">Your Goals</h2>
+          <div className="flex items-center gap-3">
+            <Target className="w-8 h-8 text-white/90" />
+            <h2 className="text-3xl font-bold text-white">Goals & Progress</h2>
+          </div>
           <div className="flex w-full md:w-auto gap-2">
             <input
               type="text"
               value={newGoal}
               onChange={(e) => setNewGoal(e.target.value)}
               placeholder="Add new goal..."
-              className="flex-1 md:w-80 p-3 rounded-xl bg-white/10 text-white placeholder-white/70 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="flex-1 md:w-80 p-3 rounded-xl bg-white/10 text-white placeholder-white/70 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
               onKeyPress={(e) => e.key === 'Enter' && handleAddGoal()}
             />
             <button
               onClick={handleAddGoal}
-              className="p-3 bg-white text-indigo-600 rounded-xl hover:bg-white/90 transition-colors duration-200"
+              className="p-3 bg-white text-indigo-600 rounded-xl hover:bg-white/90 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               <PlusCircle className="w-6 h-6" />
             </button>
@@ -84,7 +87,7 @@ export default function GoalsView() {
         {goals.map((goal) => (
           <div 
             key={goal.id} 
-            className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-md"
+            className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-md transform hover:-translate-y-1"
           >
             <div className="p-6">
               <div className="flex justify-between items-start gap-4">
@@ -95,7 +98,8 @@ export default function GoalsView() {
                       value={goal.text}
                       onChange={(e) => handleUpdateGoal(goal.id, { text: e.target.value })}
                       onBlur={() => setEditingGoal(null)}
-                      className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      onKeyPress={(e) => e.key === 'Enter' && setEditingGoal(null)}
+                      className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                       autoFocus
                     />
                   ) : (
@@ -107,7 +111,7 @@ export default function GoalsView() {
                     </h3>
                   )}
                   <div className="mt-2">
-                    <span className={`text-sm px-3 py-1 rounded-full ${getStatusColor(goal.status)}`}>
+                    <span className={`text-sm px-3 py-1 rounded-full border ${getStatusColor(goal.status)}`}>
                       {goal.status.charAt(0).toUpperCase() + goal.status.slice(1)}
                     </span>
                   </div>
@@ -115,7 +119,7 @@ export default function GoalsView() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setShowNotes(showNotes === goal.id ? null : goal.id)}
-                    className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200"
+                    className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all duration-200"
                   >
                     {showNotes === goal.id ? (
                       <ChevronUp className="w-5 h-5" />
@@ -125,13 +129,13 @@ export default function GoalsView() {
                   </button>
                   <button
                     onClick={() => setEditingGoal(goal.id)}
-                    className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200"
+                    className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all duration-200"
                   >
                     <Edit className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => handleDeleteGoal(goal.id)}
-                    className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                    className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
                   >
                     <Trash className="w-5 h-5" />
                   </button>
@@ -145,7 +149,7 @@ export default function GoalsView() {
                 </div>
                 <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div 
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transition-all duration-300"
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-300"
                     style={{ width: `${goal.progress}%` }}
                   />
                 </div>
@@ -161,7 +165,7 @@ export default function GoalsView() {
                 <select
                   value={goal.status}
                   onChange={(e) => handleUpdateGoal(goal.id, { status: e.target.value as 'active' | 'completed' | 'archived' })}
-                  className="mt-2 p-2 text-sm border rounded-lg bg-white hover:border-indigo-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  className="mt-2 p-2 text-sm border rounded-lg bg-white hover:border-indigo-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all"
                 >
                   <option value="active">Active</option>
                   <option value="completed">Completed</option>
@@ -171,11 +175,14 @@ export default function GoalsView() {
             </div>
 
             {showNotes === goal.id && (
-              <div className="border-t border-gray-100 bg-gray-50 p-6 space-y-4">
-                <h4 className="font-semibold text-gray-700">Notes & Progress Updates</h4>
+              <div className="border-t border-gray-100 bg-gray-50/80 p-6 space-y-4">
+                <h4 className="font-semibold text-gray-700 flex items-center gap-2">
+                  <MessageCircle className="w-5 h-5 text-indigo-600" />
+                  Notes & Progress Updates
+                </h4>
                 <div className="space-y-2">
                   {goal.notes?.map((note, index) => (
-                    <div key={index} className="bg-white p-3 rounded-lg border border-gray-100 text-sm text-gray-700">
+                    <div key={index} className="bg-white p-3 rounded-lg border border-gray-100 text-sm text-gray-700 shadow-sm">
                       {note}
                     </div>
                   ))}
@@ -186,12 +193,12 @@ export default function GoalsView() {
                     value={newNote}
                     onChange={(e) => setNewNote(e.target.value)}
                     placeholder="Add a note..."
-                    className="flex-1 p-3 text-sm border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    className="flex-1 p-3 text-sm border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                     onKeyPress={(e) => e.key === 'Enter' && handleAddNote(goal.id)}
                   />
                   <button
                     onClick={() => handleAddNote(goal.id)}
-                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 text-sm font-medium"
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 text-sm font-medium shadow-sm hover:shadow-md"
                   >
                     Add Note
                   </button>
