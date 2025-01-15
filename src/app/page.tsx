@@ -1,10 +1,11 @@
 
 import Image from 'next/image';
-import CoachingApp from '@/components/CoachingApp';
+import Navigation from '@/components/Navigation';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <Navigation />
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-16">
@@ -76,15 +77,10 @@ export default function Home() {
 
         {/* CTA */}
         <div className="text-center">
-          <button className="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-colors">
+          <a href="/chat" className="bg-indigo-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-colors inline-block">
             Start Your Coaching Journey
-          </button>
+          </a>
         </div>
-      </div>
-
-      {/* Main App */}
-      <div className="bg-gray-100">
-        <CoachingApp />
       </div>
     </main>
   );
