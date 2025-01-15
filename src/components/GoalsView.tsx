@@ -99,7 +99,7 @@ export default function GoalsView() {
                       onChange={(e) => handleUpdateGoal(goal.id, { text: e.target.value })}
                       onBlur={() => setEditingGoal(null)}
                       onKeyPress={(e) => e.key === 'Enter' && setEditingGoal(null)}
-                      className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                      className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-gray-800 bg-white font-medium"
                       autoFocus
                     />
                   ) : (
