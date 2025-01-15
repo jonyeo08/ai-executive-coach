@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import { MessageCircle, Send, User, Calendar, Settings, BarChart } from 'lucide-react';
 
+// Placeholder component - replace with your actual GoalsView component
+const GoalsView = () => <div>Goals and Progress View</div>;
+
 export default function CoachingApp() {
   const [activeTab, setActiveTab] = useState('chat');
   const [messages, setMessages] = useState([
@@ -20,76 +23,6 @@ export default function CoachingApp() {
       ...messages,
       { role: 'user', content: inputMessage }
     ];
-
-    // const renderContent = () => {
-    //   switch (activeTab) {
-    //     case 'goals':
-    //       return <GoalsView />;
-    //     case 'chat':
-    //       return (
-    //         <>
-    //           <div className="flex flex-col gap-6 h-[calc(100vh-280px)] min-h-[400px] overflow-y-auto mb-6 p-4 bg-gray-50 rounded-xl">
-    //             {messages.map((message, index) => (
-    //               <div
-    //                 key={index}
-    //                 className={`flex gap-3 ${
-    //                   message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
-    //                 }`}
-    //               >
-    //                 <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-    //                   message.role === 'user' ? 'bg-indigo-600' : 'bg-white border-2 border-indigo-600'
-    //                 }`}>
-    //                   {message.role === 'user' ? (
-    //                     <User className="w-5 h-5 text-white" />
-    //                   ) : (
-    //                     <MessageCircle className="w-5 h-5 text-indigo-600" />
-    //                   )}
-    //                 </div>
-    //                 <div
-    //                   className={`max-w-[80%] p-4 rounded-2xl ${
-    //                     message.role === 'user'
-    //                       ? 'bg-indigo-600 text-white'
-    //                       : 'bg-white border border-gray-200 text-gray-800 shadow-sm'
-    //                   }`}
-    //                 >
-    //                   {message.content}
-    //                 </div>
-    //               </div>
-    //             ))}
-    //           </div>
-              
-    //           <div className="flex gap-3">
-    //             <input
-    //               type="text"
-    //               value={inputMessage}
-    //               onChange={(e) => setInputMessage(e.target.value)}
-    //               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-    //               placeholder="Type your message..."
-    //               className="flex-1 p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-800 placeholder-gray-400"
-    //             />
-    //             <button
-    //               onClick={handleSendMessage}
-    //               className="p-4 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors shadow-md"
-    //             >
-    //               <Send className="w-5 h-5" />
-    //             </button>
-    //           </div>
-    //         </>
-    //       );
-    //     case 'calendar':
-    //       return (
-    //         <div className="p-4 text-center text-gray-500">
-    //           Calendar feature coming soon...
-    //         </div>
-    //       );
-    //     case 'settings':
-    //       return (
-    //         <div className="p-4 text-center text-gray-500">
-    //           Settings feature coming soon...
-    //         </div>
-    //       );
-    //   }
-    // };
 
     setMessages(newMessages);
     setInputMessage('');
@@ -116,6 +49,76 @@ export default function CoachingApp() {
         role: 'coach', 
         content: "I apologize, but I'm having trouble connecting right now. Please try again." 
       }]);
+    }
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'goals':
+        return <GoalsView />;
+      case 'chat':
+        return (
+          <>
+            <div className="flex flex-col gap-6 h-[calc(100vh-280px)] min-h-[400px] overflow-y-auto mb-6 p-4 bg-gray-50 rounded-xl">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex gap-3 ${
+                    message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    message.role === 'user' ? 'bg-indigo-600' : 'bg-white border-2 border-indigo-600'
+                  }`}>
+                    {message.role === 'user' ? (
+                      <User className="w-5 h-5 text-white" />
+                    ) : (
+                      <MessageCircle className="w-5 h-5 text-indigo-600" />
+                    )}
+                  </div>
+                  <div
+                    className={`max-w-[80%] p-4 rounded-2xl ${
+                      message.role === 'user'
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white border border-gray-200 text-gray-800 shadow-sm'
+                    }`}
+                  >
+                    {message.content}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                placeholder="Type your message..."
+                className="flex-1 p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-800 placeholder-gray-400"
+              />
+              <button
+                onClick={handleSendMessage}
+                className="p-4 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors shadow-md"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+          </>
+        );
+      case 'calendar':
+        return (
+          <div className="p-4 text-center text-gray-500">
+            Calendar feature coming soon...
+          </div>
+        );
+      case 'settings':
+        return (
+          <div className="p-4 text-center text-gray-500">
+            Settings feature coming soon...
+          </div>
+        );
     }
   };
 
@@ -181,53 +184,7 @@ export default function CoachingApp() {
               <MessageCircle className="w-7 h-7 text-indigo-600" />
               AI Executive Coach
             </h1>
-            
-            <div className="flex flex-col gap-6 h-[calc(100vh-280px)] min-h-[400px] overflow-y-auto mb-6 p-4 bg-gray-50 rounded-xl">
-              {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`flex gap-3 ${
-                    message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    message.role === 'user' ? 'bg-indigo-600' : 'bg-white border-2 border-indigo-600'
-                  }`}>
-                    {message.role === 'user' ? (
-                      <User className="w-5 h-5 text-white" />
-                    ) : (
-                      <MessageCircle className="w-5 h-5 text-indigo-600" />
-                    )}
-                  </div>
-                  <div
-                    className={`max-w-[80%] p-4 rounded-2xl ${
-                      message.role === 'user'
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-white border border-gray-200 text-gray-800 shadow-sm'
-                    }`}
-                  >
-                    {message.content}
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="flex gap-3">
-              <input
-                type="text"
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder="Type your message..."
-                className="flex-1 p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-800 placeholder-gray-400"
-              />
-              <button
-                onClick={handleSendMessage}
-                className="p-4 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors shadow-md"
-              >
-                <Send className="w-5 h-5" />
-              </button>
-            </div>
+            {renderContent()}
           </div>
         </div>
       </div>
