@@ -1,6 +1,4 @@
-
 import Navigation from "@/components/Navigation";
-import Image from "next/image";
 
 export default function MarketplacePage() {
   return (
@@ -11,7 +9,7 @@ export default function MarketplacePage() {
           <h1 className="text-4xl font-bold text-gray-900">Find Your Coach</h1>
           <p className="mt-4 text-lg text-gray-600">Connect with experienced coaches who complement our AI coaching system</p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
@@ -34,9 +32,9 @@ export default function MarketplacePage() {
             }
           ].map((coach, index) => (
             <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-              <Image 
-                src={coach.image} 
-                alt={coach.name} 
+              <Image
+                src={coach.image}
+                alt={coach.name}
                 width={500}
                 height={300}
                 className="w-full h-48 object-cover"

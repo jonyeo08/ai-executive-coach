@@ -38,7 +38,7 @@ export default function Home() {
                 <p className="text-gray-600">CEO, TechVision Inc.</p>
               </div>
             </div>
-            <p className="text-gray-700 italic">&ldquo;The combination of AI coaching and human expertise has been transformative for my leadership journey. I&apos;ve achieved more in 6 months than I did in years of traditional coaching.&rdquo;</p>
+            <p className="text-gray-700 italic">&quot;The combination of AI coaching and human expertise has been transformative for my leadership journey. I&apos;ve achieved more in 6 months than I did in years of traditional coaching.&quot;</p>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-md">
@@ -55,7 +55,7 @@ export default function Home() {
                 <p className="text-gray-600">Founder, InnovateLab</p>
               </div>
             </div>
-            <p className="text-gray-700 italic">&ldquo;Having 24/7 access to AI-powered coaching while maintaining the human element has helped me navigate challenging leadership decisions with confidence.&rdquo;</p>
+            <p className="text-gray-700 italic">&quot;Having 24/7 access to AI-powered coaching while maintaining the human element has helped me navigate challenging leadership decisions with confidence.&quot;</p>
           </div>
         </div>
       </div>
