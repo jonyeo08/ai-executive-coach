@@ -11,9 +11,9 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             AI-Powered Executive Coaching
           </h1>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-              Combine the wisdom of experienced coaches with AI technology to accelerate your professional growth. Access our AI coach 24/7 and connect with expert human coaches through our marketplace.
-            </p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Combine the wisdom of experienced coaches with AI technology to accelerate your professional growth and achieve your leadership goals.
+          </p>
         </div>
 
         {/* Feature Grid */}
