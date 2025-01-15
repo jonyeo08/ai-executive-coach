@@ -53,24 +53,24 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex items-center mb-4">
-              <Image src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" alt="Sarah Chen" width={48} height={48} className="w-12 h-12 object-cover rounded-full mr-4" />
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" alt="Sarah Chen" className="w-12 h-12 object-cover rounded-full mr-4" />
               <div>
                 <h4 className="font-semibold">Sarah Chen</h4>
                 <p className="text-gray-600">CEO, TechVision Inc.</p>
               </div>
             </div>
-            <p className="text-gray-700 italic">&ldquo;The combination of AI coaching and human expertise has been transformative for my leadership journey. I've achieved more in 6 months than I did in years of traditional coaching.&rdquo;</p>
+            <p className="text-gray-700 italic">"The combination of AI coaching and human expertise has been transformative for my leadership journey. I've achieved more in 6 months than I did in years of traditional coaching."</p>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex items-center mb-4">
-              <Image src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" alt="Marcus Johnson" width={48} height={48} className="w-12 h-12 object-cover rounded-full mr-4" />
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150" alt="Marcus Johnson" className="w-12 h-12 object-cover rounded-full mr-4" />
               <div>
                 <h4 className="font-semibold">Marcus Johnson</h4>
                 <p className="text-gray-600">Founder, InnovateLab</p>
               </div>
             </div>
-            <p className="text-gray-700 italic">&ldquo;Having 24/7 access to AI-powered coaching while maintaining the human element has helped me navigate challenging leadership decisions with confidence.&rdquo;</p>
+            <p className="text-gray-700 italic">"Having 24/7 access to AI-powered coaching while maintaining the human element has helped me navigate challenging leadership decisions with confidence."</p>
           </div>
         </div>
 
