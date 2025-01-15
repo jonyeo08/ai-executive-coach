@@ -2,9 +2,7 @@
 
 import React, { useState } from 'react';
 import { MessageCircle, Send, User, Calendar, Settings, BarChart } from 'lucide-react';
-
-// Placeholder component - replace with your actual GoalsView component
-const GoalsView = () => <div>Goals and Progress View</div>;
+import GoalsView from './GoalsView';
 
 export default function CoachingApp() {
   const [activeTab, setActiveTab] = useState('chat');
